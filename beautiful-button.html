@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beautiful-button</title>
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      padding: 120px 0;
+    }
+    button {
+      position: relative;
+      width: 200px;
+      height: 60px;
+      margin: 0 35px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-transform: capitalize;
+      cursor: pointer;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      background: #111;
+      color: #fff;
+    }
+    button:first-child:hover {
+      background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      background-size: 400%;
+    }
+    button:last-child:hover {
+      background: linear-gradient(90deg, #fa7199, #f5ce62, #e43603, #fa7199);
+      background-size: 400%;
+    }
+    button::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: inherit;
+      border-radius: 50px;
+      filter: blur(20px);
+      opacity: 0;
+    }
+    button:hover::before {
+      opacity: 1;
+      z-index: -1;
+    }
+    button:hover {
+      animation: glow 8s linear infinite;
+    }
+    @keyframes glow {
+      0% {
+        background-position: 0%;
+      }
+      100% {
+        background-position: 400%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button>HOVER ME</button>
+  <button>HOVER ME</button>
+</body>
+</html>
