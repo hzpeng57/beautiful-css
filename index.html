@@ -5,43 +5,299 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A collection of beautiful css</title>
+  <title>Beautiful CSS — A Collection of Stunning CSS Effects</title>
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      padding: 0;
-      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    header {
-      height: 60px;
-      line-height: 60px;
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 30%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(244, 65, 165, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 1;
       text-align: center;
+      padding: 120px 20px 60px;
     }
 
-    main {
-      padding: 20px 100px;
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00f0ff, #f441a5, #ffeb3b);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s ease infinite;
+      line-height: 1.2;
     }
 
-    main .link-item {
-      display: inline-block;
-      margin: 10px 20px;
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero .tagline {
+      margin-top: 16px;
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    /* Card Grid */
+    .showcase {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      padding: 0 20px 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 32px 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.1), 0 0 60px rgba(0, 240, 255, 0.05);
+    }
+
+    .card:nth-child(2):hover {
+      border-color: rgba(244, 65, 165, 0.3);
+      box-shadow: 0 0 30px rgba(244, 65, 165, 0.1), 0 0 60px rgba(244, 65, 165, 0.05);
+    }
+
+    .card:nth-child(3):hover {
+      border-color: rgba(255, 235, 59, 0.3);
+      box-shadow: 0 0 30px rgba(255, 235, 59, 0.1), 0 0 60px rgba(255, 235, 59, 0.05);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.5;
+    }
+
+    /* Mini Previews */
+    .preview {
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Button preview */
+    .preview-button {
+      width: 100px;
+      height: 36px;
+      border-radius: 50px;
+      border: none;
+      background: #222;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .card:hover .preview-button {
+      background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      background-size: 400%;
+      animation: glowBtn 4s linear infinite;
+    }
+
+    @keyframes glowBtn {
+      0% { background-position: 0%; }
+      100% { background-position: 400%; }
+    }
+
+    /* Border preview */
+    .preview-border {
+      position: relative;
+      width: 60px;
+      height: 45px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .preview-border::before {
+      content: '';
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+      animation: rotateBorder 3s linear infinite;
+    }
+
+    .preview-border::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: #1a1a2e;
+      border-radius: 3px;
+    }
+
+    @keyframes rotateBorder {
+      100% { transform: rotate(1turn); }
+    }
+
+    /* Card preview */
+    .preview-card-wrap {
+      width: 50px;
+      height: 70px;
+      background: linear-gradient(45deg, #111, deeppink, #6006ff);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover .preview-card-wrap {
+      transform: rotateY(8deg) rotateX(4deg);
+    }
+
+    .preview-card-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: #00f0ff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .showcase {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h3>A collection of beautiful css</h3>
-  </header>
-  <main>
-    <a class="link-item" href="/beautiful-button.html" target="_blank">beautiful-button</a>
-    <a class="link-item" href="/beautiful-border.html" target="_blank">beautiful-border</a>
-    <a class="link-item" href="/beautiful-card.html" target="_blank">beautiful-card</a>
-  </main>
+  <section class="hero">
+    <h1>Beautiful CSS</h1>
+    <p class="tagline">A curated collection of stunning CSS effects and animations</p>
+  </section>
+
+  <section class="showcase">
+    <a class="card" href="beautiful-button.html">
+      <div class="preview">
+        <button class="preview-button">HOVER</button>
+      </div>
+      <h2>Glow Buttons</h2>
+      <p>Gradient-powered buttons with animated glow halos that follow the color cycle.</p>
+    </a>
+
+    <a class="card" href="beautiful-border.html">
+      <div class="preview">
+        <div class="preview-border"></div>
+      </div>
+      <h2>Animated Borders</h2>
+      <p>Four unique border animation techniques — rotating gradients, conic sweeps, and more.</p>
+    </a>
+
+    <a class="card" href="beautiful-card.html">
+      <div class="preview">
+        <div class="preview-card-wrap">
+          <div class="preview-card-inner"></div>
+        </div>
+      </div>
+      <h2>3D Holographic Card</h2>
+      <p>Perspective-tracked card with holographic light refraction and sparkle overlay.</p>
+    </a>
+  </section>
+
+  <footer>
+    <a href="https://github.com/hzpeng57/beautiful-css" target="_blank">GitHub</a>
+  </footer>
 </body>
 
 </html>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Beautiful Card</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Holographic Card — Beautiful CSS</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --card-bg: url(https://img.hzpeng.cn/assets/JAINA.avif);
       --card-bg-after: url(https://img.hzpeng.cn/assets/sparkles.webp);
@@ -14,17 +20,62 @@
     }
 
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       width: 100vw;
       height: 100vh;
       transform-style: preserve-3d;
       perspective: 500px;
-      background-color: #000;
+      background-color: #0a0a0f;
+      color: #e0e0e0;
+      overflow-x: hidden;
     }
 
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, #00f0ff, #f441a5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Section title */
+    .section-title {
+      margin-top: 100px;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(135deg, #00f0ff, #f441a5, #ffeb3b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Card */
     #wrap {
       width: 350px;
       height: 500px;
-      margin: 200px auto 100px;
+      margin: 24px auto 24px;
       background: linear-gradient(45deg, black, deeppink, #6006ff);
       border-radius: 10px;
       overflow: hidden;
@@ -73,19 +124,54 @@
         display: block;
       }
     }
+
+    .attribution {
+      text-align: center;
+      padding: 16px 20px 40px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .attribution a {
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .attribution a:hover {
+      color: #00f0ff;
+    }
+
+    @media (max-width: 480px) {
+      #wrap {
+        width: 280px;
+        height: 400px;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <nav>
+    <a href="index.html">Beautiful CSS</a>
+  </nav>
+
+  <h1 class="section-title">3D Holographic Card</h1>
+
   <div id="wrap">
     <div id="card"></div>
   </div>
-  <div style="text-align: center; color: #ccc;">
-    来源：
-    <a style="color: #ccc;"
-      href="https://www.cnblogs.com/coco1s/p/17979602" target="_blank">https://www.cnblogs.com/coco1s/p/17979602</a>
+
+  <div class="attribution">
+    Source:
+    <a href="https://www.cnblogs.com/coco1s/p/17979602" target="_blank">cnblogs.com/coco1s</a>
   </div>
 </body>
+
 <script>
   const multiple = 20;
   const mouseOverContainer = document.getElementsByTagName("body")[0];

@@ -4,21 +4,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Animated Borders — Beautiful CSS</title>
   <style>
-    body {
-      padding: 100px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    div {
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, #00f0ff, #f441a5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Section title */
+    .section-title {
+      margin-top: 100px;
+      margin-bottom: 48px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(135deg, #00f0ff, #f441a5, #ffeb3b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+      padding: 0 20px 80px;
+      max-width: 600px;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .grid-item .label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* Border demos */
+    .demo-box {
       position: relative;
       width: 200px;
       height: 150px;
-      margin: 40px;
       border-radius: 4px;
       overflow: hidden;
     }
 
+    /* Demo 1: rotating gradient segment */
     .div1::after {
       content: '';
       position: absolute;
@@ -30,19 +106,33 @@
       background-size: 50% 50%;
       background-position: 0 0;
       background-image: linear-gradient(#399953, #399953);
-    }
-
-    .div1::after {
       animation: rotate 4s linear infinite;
     }
 
-    @keyframes rotate {
-      100% {
-        transform: rotate(1turn);
-      }
+    .div1::before {
+      content: '';
+      position: absolute;
+      top: 2%;
+      left: 2%;
+      width: 96%;
+      height: 96%;
+      background: #fff;
+      border-radius: 4px;
+      z-index: 2;
     }
 
-    .div1::before,
+    /* Demo 2: conic gradient sweep */
+    .div2::before {
+      content: '';
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+      animation: rotate 4s linear infinite;
+    }
+
     .div2::after {
       content: '';
       position: absolute;
@@ -55,23 +145,11 @@
       z-index: 2;
     }
 
-    .div2::before {
-      content: '';
-      position: absolute;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
-      animation: rotate2 4s linear infinite;
+    @keyframes rotate {
+      100% { transform: rotate(1turn); }
     }
 
-    @keyframes rotate2 {
-      100% {
-        transform: rotate(1turn);
-      }
-    }
-
+    /* Demo 3: clip-path border */
     .div3::before {
       content: "";
       position: absolute;
@@ -85,25 +163,13 @@
     }
 
     @keyframes clippath {
-
-      0%,
-      100% {
-        clip-path: inset(0 0 95% 0);
-      }
-
-      25% {
-        clip-path: inset(0 95% 0 0);
-      }
-
-      50% {
-        clip-path: inset(95% 0 0 0);
-      }
-
-      75% {
-        clip-path: inset(0 0 0 95%);
-      }
+      0%, 100% { clip-path: inset(0 0 95% 0); }
+      25% { clip-path: inset(0 95% 0 0); }
+      50% { clip-path: inset(95% 0 0 0); }
+      75% { clip-path: inset(0 0 0 95%); }
     }
 
+    /* Demo 4: hue-rotating gradient border */
     .div4 {
       border: 10px solid;
       border-image: linear-gradient(45deg, gold, deeppink) 1;
@@ -113,22 +179,49 @@
     }
 
     @keyframes huerotate {
-      0% {
-        filter: hue-rotate(0deg);
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 550px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
       }
 
-      100% {
-        filter: hue-rotate(360deg);
+      .section-title {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="div1"></div>
-  <div class="div2"></div>
-  <div class="div3"></div>
-  <div class="div4"></div>
+  <nav>
+    <a href="index.html">Beautiful CSS</a>
+  </nav>
+
+  <h1 class="section-title">Animated Borders</h1>
+
+  <div class="grid">
+    <div class="grid-item">
+      <div class="demo-box div1"></div>
+      <span class="label">Rotating Gradient</span>
+    </div>
+    <div class="grid-item">
+      <div class="demo-box div2"></div>
+      <span class="label">Conic Sweep</span>
+    </div>
+    <div class="grid-item">
+      <div class="demo-box div3"></div>
+      <span class="label">Clip-Path Trace</span>
+    </div>
+    <div class="grid-item">
+      <div class="demo-box div4"></div>
+      <span class="label">Hue Rotation</span>
+    </div>
+  </div>
 </body>
 
 </html>
